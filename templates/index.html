@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Sua prantinha :)</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+{% endblock %}
+
+{% block body %}
+    <main>
+        <div class="main">
+            <h1 class="titulo-grande">Olá,<br>Seja<br>Bem<br>Vindo(a)</h1>
+            <a href="/plantas"><img class= "seta-direita" src="../static/images/seta-direita.svg" alt="seta direita"></a>
+        </div>
+    </main>
+{% endblock %}
