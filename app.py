@@ -7,27 +7,11 @@ import json
 
 app = Flask(__name__)
 firebase = firebase.FirebaseApplication('https://sd-cesar-7789b-default-rtdb.firebaseio.com/', None)
-link = "https://sd-cesar-7789b-default-rtdb.firebaseio.com/plantas"
+link = "https://sd-cesar-7789b-default-rtdb.firebaseio.com/"
 hoje_dia = time.strftime("%d-%m-%Y")
 agora = datetime.now()
 hora = agora.strftime("%H:%M:%S")
-
-
-#def get_plantas(rota_banco_individual):
-headings = []
-plants_info = []
-requisicao = requests.get(f'{link}/.json')
-dic_requisicao = requisicao.json()
-informacoes_plantas_individual = dic_requisicao
-
-for id_dono_planta in dic_requisicao:
-    nome_planta = dic_requisicao[id_dono_planta]['nome']
-    headings.append(nome_planta)
-    plants_info.append(dic_requisicao[id_dono_planta])
-    print(f'nome planta: {nome_planta}, id individual planta: {id_dono_planta}')
-    print(f'todas as infos: {informacoes_plantas_individual}\n')
-
-print('print individual das listas:\n', headings, '\n', plants_info)
+infos_tempo = hoje_dia + ' ' + hora
 
 
 @app.route('/')
@@ -35,10 +19,18 @@ def welcome():
     return render_template('index.html')
 
 
-@app.route('/plantas')
-def plantas():
+@app.route('/plantinhas', methods=['GET', 'POST'])
+def plants():
+    if request.method == 'POST':
+        nome_nova_planta = request.form['nome_planta']
+        requisicao_planta_nova = requests.post(f'{link}/plantas/{nome_nova_planta}.json', data=json.dumps('hash ind.'))
+
+        print(requisicao_planta_nova)
+    else:
+        return render_template('plantas.html')
+
     return render_template('plantas.html')
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

@@ -7,4 +7,21 @@
 
 {% block body %}
 
+    <form action="/plantinhas" method="POST" class="flex-itens-menu">
+        <div class="input-group">
+            <input required="" type="text" id="nome_planta" name="nome_planta" autocomplete="off" class="input">
+            <label class="user-label">Plant Name</label>
+        </div>
+
+        <button type="submit" value="add plant">Adicionar planta</button>
+    </form>
+
+    {% for plant in plants %}
+        <h1> {{ plant }}</h1>
+    {% endfor %}
+
+    {% for plantinhas_info in plants_info_html %}
+        <p> {{ plantinhas_info }} </p>
+    {% endfor %}
+
 {% endblock %}
