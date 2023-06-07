@@ -8,19 +8,27 @@
 {% block body %}
 
     <nav class="nav">
-        <form action="/plantinhas" method="POST" class="flex-itens-menu">
-            <div class="input-group">
-                <input required="" type="text" id="nome_planta" name="nome_planta" autocomplete="off" class="input">
-                <label class="user-label">Nome da planta</label>
+        <div class="nav-separar">
+            <div>
+                <form action="/plantinhas" method="POST" class="flex-itens-menu">
+                    <div class="input-group">
+                        <input required="" type="text" id="nome_planta" name="nome_planta" autocomplete="off" class="input">
+                        <label class="user-label">Plant Name</label>
+                    </div>
+                    <button onclick="alerta(nome_ja_registrado)" type="submit" value="add plant">Adicionar planta</button>
+                </form>
             </div>
-            <button onclick="alerta(nome_ja_registrado)" type="submit" value="add plant">Adicionar planta</button>
-        </form>
+            <h1 class="title-nav">HORA DE CUIDAR DA SUA PLANTINHA :)</h1>
+        </div>
+
     </nav>
 
     <main>
         {% for planta in dic %}
             <div class="card">
-                <h1 class="title">{{ planta }}</h1>
+                <div class="title">
+                    <h1 >{{ planta }}</h1>
+                </div>
                 <div class="subinfos">
                     <p>Luz: {{ dic[planta]['luz'] }}</p>
                     <p>Umidade: {{ dic[planta]['umidade'] }}</p>
