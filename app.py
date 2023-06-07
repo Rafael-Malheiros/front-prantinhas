@@ -6,8 +6,8 @@ from firebase import firebase
 import json
 
 app = Flask(__name__)
-firebase = firebase.FirebaseApplication('https://sd-cesar-7789b-default-rtdb.firebaseio.com/', None)
-link = "https://sd-cesar-7789b-default-rtdb.firebaseio.com/"
+firebase = firebase.FirebaseApplication('https://sd-cesar-cf057-default-rtdb.firebaseio.com/', None)
+link = "https://sd-cesar-cf057-default-rtdb.firebaseio.com/"
 
 
 @app.route('/')
@@ -48,6 +48,16 @@ def plants():
             nome_ja_registrado = True
     return render_template('plantas.html', nome_ja_registrado=nome_ja_registrado, dic=dic)
 
+@app.route('/plantinhas/<planta>', methods=['GET', 'POST'])
+def plant_page(planta):
+    requisition = requests.get(f'{link}/plantas/.json')
+    dic = requisition.json()
+    plant_data = dic.get(planta)
+
+    if request.method == 'POST':
+        requests.patch(f'{link}/plantas/verificar/{planta}.json')
+        return redirect(f'/plantinhas/{planta}')
+    return render_template('plant_name.html', plant_data=plant_data, planta=planta)
 
 if __name__ == '__main__':
     app.run(debug=False)
