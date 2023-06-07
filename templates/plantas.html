@@ -7,21 +7,39 @@
 
 {% block body %}
 
-    <form action="/plantinhas" method="POST" class="flex-itens-menu">
-        <div class="input-group">
-            <input required="" type="text" id="nome_planta" name="nome_planta" autocomplete="off" class="input">
-            <label class="user-label">Plant Name</label>
-        </div>
+    <nav class="nav">
+        <form action="/plantinhas" method="POST" class="flex-itens-menu">
+            <div class="input-group">
+                <input required="" type="text" id="nome_planta" name="nome_planta" autocomplete="off" class="input">
+                <label class="user-label">Nome da planta</label>
+            </div>
+            <button onclick="alerta(nome_ja_registrado)" type="submit" value="add plant">Adicionar planta</button>
+        </form>
+    </nav>
 
-        <button type="submit" value="add plant">Adicionar planta</button>
-    </form>
+    <main>
+        {% for planta in dic %}
+            <div class="card">
+                <h1 class="title">{{ planta }}</h1>
+                <div class="subinfos">
+                    <p>Luz: {{ dic[planta]['luz'] }}</p>
+                    <p>Umidade: {{ dic[planta]['umidade'] }}</p>
+                    <p>Temperatura: {{ dic[planta]['temperatura'] }} </p>
+                    <p>Data Inferida: {{ dic[planta]['data'] }}</p>
+                </div>
+            </div>
+        {% endfor %}
 
-    {% for plant in plants %}
-        <h1> {{ plant }}</h1>
-    {% endfor %}
-
-    {% for plantinhas_info in plants_info_html %}
-        <p> {{ plantinhas_info }} </p>
-    {% endfor %}
-
+    </main>
 {% endblock %}
+
+<script>
+    function alerta(nome_ja_registrado){
+        if (!nome_ja_registrado){
+            return alert("Planta registrada");
+        }
+        else{
+            return alert("Planta já existe");
+        }
+    }
+</script>
