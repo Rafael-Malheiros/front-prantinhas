@@ -29,7 +29,7 @@ def plants():
     for i in dic:
         plants.append(i)
     # Tentando botar pop-up javaScript na tela, caso planta já esteja cadastrada
-    nome_ja_registrado = 0
+    nome_ja_registrado = False
     # Método post pra adicionar nova planta
     if request.method == 'POST':
         hoje_dia = time.strftime("%d-%m-%Y") # Pegar hora adicionada
@@ -45,7 +45,7 @@ def plants():
             return redirect('/plantinhas') # Quando inserida planta atualizar a pagina automaticamente
         else: # Else, nao precisa de explicaçao
             print("nome já registrado")
-            nome_ja_registrado = 1
+            nome_ja_registrado = True
     return render_template('plantas.html', nome_ja_registrado=nome_ja_registrado, dic=dic)
 
 

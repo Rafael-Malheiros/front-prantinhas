@@ -25,17 +25,17 @@
 
     <main>
         {% for planta in dic %}
-            <div class="card">
-                <div class="title">
-                    <h1 >{{ planta }}</h1>
-                </div>
-                <div class="subinfos">
-                    <p>Luz: {{ dic[planta]['luz'] }}</p>
-                    <p>Umidade: {{ dic[planta]['umidade'] }}</p>
-                    <p>Temperatura: {{ dic[planta]['temperatura'] }} </p>
-                    <p>Data Inferida: {{ dic[planta]['data'] }}</p>
-                </div>
+        <a href="/plantas/{{ planta }}" class="card">
+            <div class="title">
+                <h1 >{{ planta }}</h1>
             </div>
+            <div class="subinfos">
+                <p>Luz: {{ dic[planta]['luz'] }}</p>
+                <p>Umidade: {{ dic[planta]['umidade'] }}</p>
+                <p>Temperatura: {{ dic[planta]['temperatura'] }} </p>
+                <p>Data Inferida: {{ dic[planta]['data'] }}</p>
+            </div>
+        </a>
         {% endfor %}
 
     </main>
