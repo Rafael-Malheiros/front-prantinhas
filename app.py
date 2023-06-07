@@ -39,10 +39,10 @@ def plants():
 
         nome_nova_planta = request.form['nome_planta'].capitalize() # Pegando nome do html
 
-        if nome_nova_planta not in dic: # Conferindo se planta não já está no banco pelo nome dela e se não, inserindo no banco
-            infos_tempo_inserir = {'data': infos_tempo}
-            requests.patch(f'{link}/plantas/{nome_nova_planta}/.json', data=json.dumps(infos_tempo_inserir))
-            return redirect('/plantinhas')
+        if nome_nova_planta not in dic: # Conferindo se planta não já está no banco pelo nome dela
+            infos_tempo_inserir = {'data': infos_tempo} # Dicionario com hora no value e data na key, para dar o post
+            requests.patch(f'{link}/plantas/{nome_nova_planta}/.json', data=json.dumps(infos_tempo_inserir))#Post(patch)
+            return redirect('/plantinhas') # Quando inserida planta atualizar a pagina automaticamente
         else: # Else, nao precisa de explicaçao
             print("nome já registrado")
             nome_ja_registrado = 1
