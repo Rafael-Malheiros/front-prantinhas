@@ -48,16 +48,11 @@ def plants():
             nome_ja_registrado = True
     return render_template('plantas.html', nome_ja_registrado=nome_ja_registrado, dic=dic)
 
-@app.route('/plantinhas/<planta>', methods=['GET', 'POST'])
-def plant_page(planta):
-    requisition = requests.get(f'{link}/plantas/.json')
-    dic = requisition.json()
-    plant_data = dic.get(planta)
-
-    if request.method == 'POST':
-        requests.patch(f'{link}/plantas/verificar/{planta}.json')
-        return redirect(f'/plantinhas/{planta}')
-    return render_template('plant_name.html', plant_data=plant_data, planta=planta)
+@app.route('/plantinhas/verificar', methods=['POST'])
+def verifyPlant():
+    planta = request.form.get('planta')
+    requests.patch(f'{link}', data={'verificar': planta})
+    return ''
 
 if __name__ == '__main__':
     app.run(debug=False)

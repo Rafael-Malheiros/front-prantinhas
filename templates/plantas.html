@@ -25,7 +25,6 @@
 
     <main>
         {% for planta in dic %}
-        <a href="/plantinhas/{{ planta }}" class="card">
             <div class="title">
                 <h1 >{{ planta }}</h1>
             </div>
@@ -35,7 +34,6 @@
                 <p>Temperatura: {{ dic[planta]['temperatura'] }} </p>
                 <p>Data Inferida: {{ dic[planta]['data'] }}</p>
             </div>
-        </a>
         {% endfor %}
 
     </main>
