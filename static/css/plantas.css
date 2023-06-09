@@ -114,8 +114,6 @@ button:active {
     border-radius: 1rem;
     border: 2px solid #000;
     position: relative;
-    text-decoration: none;
-    display: inline-block;
 
 }
 
@@ -133,7 +131,11 @@ button:active {
 
 .subinfos{
     margin: .2rem 2rem 1.5rem 2rem;
-    color: #000;
+}
+
+.verButton{
+    margin: .2rem 2rem 1.5rem 2rem;
+    width: 80%;
 }
 
 .nav-separar{
@@ -173,4 +175,3 @@ main{
         grid-template-columns: repeat(2, 1fr);
     }
 }
-
